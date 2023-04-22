@@ -7,7 +7,7 @@ fi
 
 # Get dependencies from APT
 apt -y install libjpeg-dev libfreetype6-dev git python3 python3-dev \
-  python3-pip python3-setuptools python3-smbus python3-wheel ttf-dejavu \
+  python3-pip python3-setuptools python3-smbus python3-wheel fonts-dejavu-core \
   zlib1g-dev python3-libgpiod
 
 # Install image and pillow
