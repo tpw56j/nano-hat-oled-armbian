@@ -36,7 +36,7 @@ sudo apt -y install \
   python3-setuptools \
   python3-smbus \
   python3-wheel \
-  ttf-dejavu \
+  fonts-dejavu-core \
   zlib1g-dev \
   python3-libgpiod
 ```
