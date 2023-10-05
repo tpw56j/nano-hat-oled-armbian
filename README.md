@@ -38,14 +38,10 @@ sudo apt -y install \
   python3-wheel \
   ttf-dejavu \
   zlib1g-dev \
-  python3-libgpiod
+  python3-libgpiod \
+  python3-pillow
 ```
-And install `image` and `pillow` from PIP:
-```
-sudo pip3 install \
-  image \
-  pillow
-```
+
 ### Get the Code
 Clone from GitHub:
 ```
@@ -63,68 +59,14 @@ Use `ctrl+c` to terminate.
 ### Install
 Make the program directory:
 ```
-sudo mkdir /usr/share/nanohatoled
+sudo install3.sh
 ```
-Copy the program files:
-```
-sudo mv /tmp/nano-hat-oled-armbian/oled-start3.py /usr/share/nanohatoled/
-sudo cp /tmp/nano-hat-oled-armbian/splash.png /usr/share/nanohatoled/
-```
-Copy service file:
-```
-sudo mv nanohatoled.service /etc/systemd/system
-sudo systemctl daemon-reload
-sudo systemctl enable nanohatoled.service
-```
+
 Reboot the system for the changes to take effect.
 ```
 sudo reboot now
 ```
 
-## Upgrade from Previous Versions
-Get the latest code:
-```
-cd /tmp
-git clone https://github.com/crouchingtigerhiddenadam/nano-hat-oled-armbian
-```
-Compile the code:
-```
-cd /tmp/nano-hat-oled-armbian
-python3 -O -m py_compile oled-start3.py
-```
-Remove files from the previous version:
-```
-sudo rm /usr/share/nanohatoled/* -r
-```
-Copy the lastest version into place:
-```
-sudo mv /tmp/nano-hat-oled-armbian/oled-start3.py /usr/share/nanohatoled/
-sudo mv /tmp/nano-hat-oled-armbian/splash.png /usr/share/nanohatoled/
-```
-Edit `rc.local`:
-```
-sudo nano /etc/rc.local
-```
-Then find the line:
-```
-exit 0
-```
-If required, change `cd /usr/share/nanohatoled & /usr/bin/nice /usr/bin/python -n 10 oled-start.pyo &` before `exit 0` so the lines look like this:
-```
-cd /usr/share/nanohatoled && /usr/bin/nice -n 10 /usr/bin/python3 oled-start3.py &
-exit 0
-```
-Save these changes by pressing `ctrl+x`, `ctrl+y` and `enter` as prompted at the bottom of the screen.   
-  
-Compile the code:
-```
-cd /tmp/nano-hat-oled-armbian
-python3 -O -m py_compile oled-start3.py
-```
-Reboot the system for the changes to take effect.
-```
-sudo reboot now
-```
 
 ## Troubleshooting
 
@@ -150,6 +92,13 @@ Reboot the system for the changes to take effect.
 sudo reboot now
 ```
 
+### Problems on NanoPi Neo
+I get
+```
+[Errno 16] Device or resource busy
+```
+and i have no idea how to fix
+
 ## Appendix
 
 ### Enable i2c0 through /boot/armbianEnv.txt
@@ -171,19 +120,3 @@ Reboot the system for the changes to take effect:
 sudo reboot now
 ```
 
-### Experimental Quick Install and Update
-   
-Enable the i2c0 either using `armbian-config` or changing `/boot/armbianEnv.txt` and reboot.   
-   
-After reboot, run the following command:
-```
-sudo wget -O - \
-  https://raw.githubusercontent.com/crouchingtigerhiddenadam/nano-hat-oled-armbian/primary/install3.sh | \
-  sudo bash -
-```
-The command can be used to make a fresh installation or update an existing installation to the latest version.
-   
-Reboot the system for the changes to take effect:
-```
-sudo reboot now
-```
