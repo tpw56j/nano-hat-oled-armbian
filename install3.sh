@@ -7,20 +7,22 @@ fi
 
 # Get dependencies from APT
 apt -y install libjpeg-dev libfreetype6-dev git python3 python3-dev \
-  python3-pip python3-setuptools python3-smbus python3-wheel fonts-dejavu-core \
-  zlib1g-dev python3-libgpiod
+  python3-pip python3-setuptools python3-smbus python3-wheel fonts-dejavu \
+  zlib1g-dev python3-libgpiod python3-pillow
 
 # Install image and pillow
-pip3 install image pillow
+#pillow is now installed with apt and image seems to not be needed
+#pip3 install image pillow 
 
 # Get the code
-if [ -d "/tmp/nano-hat-oled-armbian" ]
-then
-  rm /tmp/nano-hat-oled-armbian -rf
-fi
-cd /tmp
-git clone https://github.com/crouchingtigerhiddenadam/nano-hat-oled-armbian
-cd ./nano-hat-oled-armbian
+#this download the code from the old github and overwrite updates...
+#if [ -d "/tmp/nano-hat-oled-armbian" ]
+#then
+#  rm /tmp/nano-hat-oled-armbian -rf
+#fi
+#cd /tmp
+#git clone https://github.com/crouchingtigerhiddenadam/nano-hat-oled-armbian
+#cd ./nano-hat-oled-armbian
 
 # Make the program directory
 if [ ! -d "/usr/share/nanohatoled" ]
